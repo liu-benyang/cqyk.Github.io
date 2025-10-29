@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>重庆医科大学科研成果转化平台</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f8fafc;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 750px;
+            margin: 0 auto;
+            background-color: #fff;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        /* 标题Banner部分 */
+        .banner {
+            background: linear-gradient(135deg, #1a6bb3 0%, #0d4e8a 100%);
+            color: white;
+            padding: 60px 20px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .banner::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            z-index: 1;
+        }
+        
+        .banner-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .banner h1 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+        
+        .banner p {
+            font-size: 16px;
+            opacity: 0.9;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .dna-animation {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%2300a896"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="%2300a896"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%2300a896"/></svg>');
+            background-size: cover;
+            background-repeat: no-repeat;
+            z-index: 3;
+        }
+        
+        /* 关于我们部分 */
+        .about {
+            padding: 40px 20px;
+            background-color: white;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            color: #1a6bb3;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e6f2ff;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 80px;
+            height: 2px;
+            background-color: #00a896;
+        }
+        
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .mission-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .mission-icon {
+            background-color: #e6f2ff;
+            color: #1a6bb3;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .mission-text {
+            flex: 1;
+        }
+        
+        /* 核心优势部分 */
+        .advantages {
+            padding: 40px 20px;
+            background-color: #f0f7ff;
+        }
+        
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+        
+        .advantage-item {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .advantage-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #1a6bb3 0%, #0d4e8a 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            color: white;
+            font-size: 24px;
+        }
+        
+        .advantage-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a6bb3;
+            margin-bottom: 10px;
+        }
+        
+        /* 服务范围部分 */
+        .services {
+            padding: 40px 20px;
+            background-color: white;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .service-item {
+            background-color: #f8fafc;
+            border-radius: 10px;
+            padding: 20px 15px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e6f2ff;
+        }
+        
+        .service-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #e6f2ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            color: #1a6bb3;
+            font-size: 20px;
+        }
+        
+        .service-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a6bb3;
+            margin-bottom: 5px;
+        }
+        
+        .service-desc {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        /* 联系方式部分 */
+        .contact {
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #1a6bb3 0%, #0d4e8a 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .contact-title {
+            font-size: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .contact-icon {
+            width: 30px;
+            height: 30px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* 动画效果 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* 响应式设计 */
+        @media (min-width: 768px) {
+            .banner h1 {
+                font-size: 32px;
+            }
+            
+            .section-title {
+                font-size: 24px;
+            }
+            
+            .advantages-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 标题Banner -->
+        <section class="banner">
+            <div class="banner-content">
+                <h1>重庆医科大学科研成果转化平台</h1>
+                <p>推动医学科研创新，构建产学研用一体化生态</p>
+            </div>
+            <div class="dna-animation"></div>
+        </section>
+        
+        <!-- 关于我们 -->
+        <section class="about">
+            <h2 class="section-title">关于我们</h2>
+            <div class="about-content">
+                <div class="mission-item fade-in">
+                    <div class="mission-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <div class="mission-text">
+                        <p>推动科研成果转化，助力"产学研用"一体化发展。</p>
+                    </div>
+                </div>
+                <div class="mission-item fade-in">
+                    <div class="mission-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="mission-text">
+                        <p>成立医疗科技联盟，构建链接学校、医院、企业的创新生态。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 核心优势 -->
+        <section class="advantages">
+            <h2 class="section-title">核心优势</h2>
+            <div class="advantages-grid">
+                <div class="advantage-item fade-in">
+                    <div class="advantage-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <h3 class="advantage-title">顶尖学府支撑</h3>
+                    <p>全面依托重庆医科大学的雄厚科研资源与顶尖人才资源。</p>
+                </div>
+                <div class="advantage-item fade-in">
+                    <div class="advantage-icon">
+                        <i class="fas fa-hospital"></i>
+                    </div>
+                    <h3 class="advantage-title">庞大临床网络</h3>
+                    <p>直通 15家重庆医科大学附属三甲医院，提供无与伦比的临床资源与实践场景。</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 服务范围 -->
+        <section class="services">
+            <h2 class="section-title">服务范围</h2>
+            <div class="services-grid">
+                <div class="service-item fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h4 class="service-title">成果转化</h4>
+                    <p class="service-desc">科研成果转化对接</p>
+                </div>
+                <div class="service-item fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h4 class="service-title">科研平台</h4>
+                    <p class="service-desc">共建联合实验室/研发中心</p>
+                </div>
+                <div class="service-item fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h4 class="service-title">项目运营</h4>
+                    <p class="service-desc">专业化的项目管理</p>
+                </div>
+                <div class="service-item fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <h4 class="service-title">临床试验</h4>
+                    <p class="service-desc">为新技术提供临床试用</p>
+                </div>
+                <div class="service-item fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h4 class="service-title">临床评价</h4>
+                    <p class="service-desc">权威团队真实评价</p>
+                </div>
+                <div class="service-item fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-file-medical"></i>
+                    </div>
+                    <h4 class="service-title">产品注册</h4>
+                    <p class="service-desc">对接药监、快速注册</p>
+                </div>
+                <div class="service-item fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-puzzle-piece"></i>
+                    </div>
+                    <h4 class="service-title">技术攻关</h4>
+                    <p class="service-desc">组织专家解决研发难题</p>
+                </div>
+                <div class="service-item fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h4 class="service-title">课题申报</h4>
+                    <p class="service-desc">共同申报国家及省部级项目</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 联系方式 -->
+        <section class="contact">
+            <h2 class="contact-title">联系我们，开启合作之门</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <span>电话：17723891286</span>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <span>地址：重庆市渝中区医学院路1号重庆医科大学</span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // 滚动动画效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const fadeInObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            fadeElements.forEach(element => {
+                fadeInObserver.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
